@@ -105,3 +105,5 @@ int main() {
 
     return 0;
 }
+//oli, es muy tardesito asique mañana modificare este codigo para implementar
+//lo de grafos.h ;")
