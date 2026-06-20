@@ -14,11 +14,11 @@ private:
 	vector<vector<pair<int,int>>> ady;
 	//para revisar si existe la arista sin tener que recorrer toda la lista
 	vector<unordered_set<int>> vecinosSet;
-    int cantAristas = 0;
+    int cantAristas=0;
 public:
 	//si el nodo existe devuelve su id y si no lo crea y devuelve la id
 	int agregarNodo(const string& nombre);
-	void agregarArista(const string& u, const string& v, int peso = 1, bool dirigido = false);
+	void agregarArista(const string& u, const string& v, int peso=1, bool dirigido=false);
 	//para eliminar aristas:
 	void eliminarArista(const string& u, const string& v);
     bool existeArista(const string& u, const string& v) const;
@@ -31,6 +31,6 @@ public:
     int grado(const string& nombre) const;
     //recorrer vecinos de un nodo por id
     const vector<pair<int,int>>& vecinosDe(int id) const;
-    void ArmarCsv(const string& archivo, char delim, bool tieneHeader, bool tienePeso, bool dirigido = false);
+    void ArmarCsv(const string& archivo, char delim, bool tieneHeader, bool tienePeso, bool dirigido=false);
 };
 #endif
