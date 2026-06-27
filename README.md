@@ -27,7 +27,7 @@ El proyecto analiza la topología de los grafos mediante 7 métricas clave:
 4.  **PageRank:** Importancia estructural mediante recorridos aleatorios.
 5.  **Average Shortest Path:** Distancia promedio global del grafo.
 6.  **Subgraph Centrality:** Participación en circuitos cerrados.
-7.  **Clustering Coefficient:** Tendencia de la red a agruparse localmente (triángulos).
+7.  **Global Clustering Coefficient (Transitividad):** Tendencia global de la red a agruparse localmente (triángulos).
 
 
 
