@@ -119,5 +119,29 @@ int main()
     cout << "Centralidad de Grado IMDB calculada en: " << timeImdbDC << " ms" << endl;
     mostrarTopCentralidad(imdb, dcImdb, "Centralidad de Grado Normalizada (IMDB)", 5);
 
+     cout << "\n--------------------------------------------------\n"
+         << endl;
+
+    // ========================================================================
+    // Centralidad de Intermediación para Yeast y IMDB
+
+    cout << "Calculando Centralidad de Intermediación para Yeast..." << endl;
+    auto startYeastBC = chrono::high_resolution_clock::now();
+    vector<double> bcYeast = calcBetweennessCentrality(yeast);
+    auto endYeastBC = chrono::high_resolution_clock::now();
+    double timeYeastBC = chrono::duration<double, milli>(endYeastBC - startYeastBC).count();
+    cout << "Centralidad de Intermediación Yeast calculada en: " << timeYeastBC << " ms" << endl;
+    mostrarTopCentralidad(yeast, bcYeast, "Centralidad de Intermediacion (Yeast)", 5);
+
+    cout << "\n--------------------------------------------------\n" << endl;
+
+    cout << "Calculando Centralidad de Intermediación para IMDB..." << endl;
+    auto startImdbBC = chrono::high_resolution_clock::now();
+    vector<double> bcImdb = calcBetweennessCentrality(imdb);
+    auto endImdbBC = chrono::high_resolution_clock::now();
+    double timeImdbBC = chrono::duration<double, milli>(endImdbBC - startImdbBC).count();
+    cout << "Centralidad de Intermediación IMDB calculada en: " << timeImdbBC << " ms" << endl;
+    mostrarTopCentralidad(imdb, bcImdb, "Centralidad de Intermediacion (IMDB)", 5);
+
     return 0;
 }

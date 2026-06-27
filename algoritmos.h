@@ -20,13 +20,13 @@ struct NodoRanking {
 
 /**
  * 1. Centralidad de Grado (Degree Centrality)
- * Retorna ...
+ * Retorna un vector con la centralidad de grado normalizada para cada nodo.
  */
 vector<double> calcDegreeCentrality(const Grafo& g);
 
 /**
  * 2. Centralidad de Intermediación (Betweenness Centrality)
- * Retorna ...
+ * Retorna un vector con la centralidad de intermediación normalizada para cada nodo.
  */
 vector<double> calcBetweennessCentrality(const Grafo& g);
 
