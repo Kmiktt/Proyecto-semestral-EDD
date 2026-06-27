@@ -33,4 +33,9 @@ El proyecto analiza la topología de los grafos mediante 7 métricas clave:
 
 ---
 
-Debido al gran tamaño de los datasets, **estos no se suben al repositorio**. Se tienen que agregar a la carpeta /data.
+Debido al gran tamaño de los datasets, **estos no se suben al repositorio**. Se tienen que agregar a la carpeta `/data`.
+
+Para compilar, se debe ejecutar
+```bash
+g++ -O3 main.cpp grafos.cpp algoritmosUtil.cpp calc*.cpp -o main
+```

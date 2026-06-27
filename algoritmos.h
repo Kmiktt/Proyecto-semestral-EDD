@@ -37,11 +37,19 @@ vector<double> calcBetweennessCentrality(const Grafo& g);
 vector<double> calcClosenessCentrality(const Grafo& g);
 
 /**
- * 4. PageRank
- * Calcula la importancia de los nodos mediante recorridos aleatorios iterativos (Power Iteration).
- * @param dampingFactor Factor de amortiguación (típicamente 0.85).
- * @param maxIteraciones Límite máximo de ciclos.
- * @param tolerancia Criterio de parada por convergencia.
+ * @brief 4. PageRank
+ *
+ * Calcula la importancia de los nodos mediante recorridos aleatorios iterativos 
+ * utilizando el método de Modelo de Navegación aleatorio.
+ *
+ * @note Referencia basada en el siguiente video:
+ * https://www.youtube.com/watch?v=meonLcN7LD4
+ *
+ * @param g Referencia al grafo sobre el que se calcula
+ * @param dampingFactor Factor de amortiguación o probabilidad de seguir enlaces (típicamente 0.85).
+ * @param maxIteraciones Límite máximo de iteraciones en caso de no converger.
+ * @param tolerancia Criterio de break cuando la diferencia entre iteraciones es mínima.
+ * @return vector<double> Vector con el puntaje de PageRank indexado por el ID de cada nodo.
  */
 vector<double> calcPageRank(const Grafo& g, double dampingFactor = 0.85, int maxIteraciones = 100, double tolerancia = 1e-6);
 
