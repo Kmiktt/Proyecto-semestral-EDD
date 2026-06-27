@@ -1,4 +1,4 @@
-#include "grafo.h"
+#include "grafos.h"
 #include <iostream>
 #include <chrono>
 

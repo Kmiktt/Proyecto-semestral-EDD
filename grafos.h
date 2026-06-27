@@ -4,6 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+using namespace std;
 class Grafo{
 private:
 	//tiene como clave los nombres y como valor los indices de los nodos
