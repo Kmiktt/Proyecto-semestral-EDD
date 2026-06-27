@@ -94,5 +94,30 @@ int main()
          << " (" << ccGlobalImdb * 100.0 << "%)\n"
          << endl;
 
+    cout << "\n--------------------------------------------------\n"
+         << endl;
+
+    // ========================================================================
+    // Centralidad de Grado para Yeast y IMDB
+
+    cout << "Calculando Centralidad de Grado para Yeast..." << endl;
+    auto startYeastDC = chrono::high_resolution_clock::now();
+    vector<double> dcYeast = calcDegreeCentrality(yeast);
+    auto endYeastDC = chrono::high_resolution_clock::now();
+    double timeYeastDC = chrono::duration<double, milli>(endYeastDC - startYeastDC).count();
+    cout << "Centralidad de Grado Yeast calculada en: " << timeYeastDC << " ms" << endl;
+    mostrarTopCentralidad(yeast, dcYeast, "Centralidad de Grado Normalizada (Yeast)", 5);
+
+    cout << "\n--------------------------------------------------\n"
+         << endl;
+
+    cout << "Calculando Centralidad de Grado para IMDB..." << endl;
+    auto startImdbDC = chrono::high_resolution_clock::now();
+    vector<double> dcImdb = calcDegreeCentrality(imdb);
+    auto endImdbDC = chrono::high_resolution_clock::now();
+    double timeImdbDC = chrono::duration<double, milli>(endImdbDC - startImdbDC).count();
+    cout << "Centralidad de Grado IMDB calculada en: " << timeImdbDC << " ms" << endl;
+    mostrarTopCentralidad(imdb, dcImdb, "Centralidad de Grado Normalizada (IMDB)", 5);
+
     return 0;
 }
