@@ -59,11 +59,6 @@ vector<double> calcPageRank(const Grafo& g, double dampingFactor = 0.85, int max
  */
 vector<double> calcSubgraphCentrality(const Grafo& g);
 
-/**
- * 7. Coeficiente de Agrupamiento Local (Clustering Coefficient)
- * Retorna ...
- */
-vector<double> calcClusteringCoefficient(const Grafo& g);
 
 // -------------------------------------------
 // Métricas que actúan sobre el grafo completo.
@@ -73,6 +68,13 @@ vector<double> calcClusteringCoefficient(const Grafo& g);
  * Devuelve la distancia promedio entre todos los pares de nodos conectados en el grafo.
  */
 double calcAverageShortestPath(const Grafo& g);
+
+/**
+ * @brief 7. Coeficiente de agrupamiento global (Global Clustering Coefficient).
+ * 
+ * Retorna un valor entre 0 y 1 que indica la tendencia de los nodos a formar clústeres o grupos densamente conectados.
+ */
+double calcGlobalClusteringCoefficient(const Grafo& g);
 
 
 
