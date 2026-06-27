@@ -119,7 +119,7 @@ int main()
     cout << "Centralidad de Grado IMDB calculada en: " << timeImdbDC << " ms" << endl;
     mostrarTopCentralidad(imdb, dcImdb, "Centralidad de Grado Normalizada (IMDB)", 5);
 
-     cout << "\n--------------------------------------------------\n"
+    cout << "\n--------------------------------------------------\n"
          << endl;
 
     // ========================================================================
@@ -133,7 +133,8 @@ int main()
     cout << "Centralidad de Intermediación Yeast calculada en: " << timeYeastBC << " ms" << endl;
     mostrarTopCentralidad(yeast, bcYeast, "Centralidad de Intermediacion (Yeast)", 5);
 
-    cout << "\n--------------------------------------------------\n" << endl;
+    cout << "\n--------------------------------------------------\n"
+         << endl;
 
     cout << "Calculando Centralidad de Intermediación para IMDB..." << endl;
     auto startImdbBC = chrono::high_resolution_clock::now();
@@ -142,6 +143,31 @@ int main()
     double timeImdbBC = chrono::duration<double, milli>(endImdbBC - startImdbBC).count();
     cout << "Centralidad de Intermediación IMDB calculada en: " << timeImdbBC << " ms" << endl;
     mostrarTopCentralidad(imdb, bcImdb, "Centralidad de Intermediacion (IMDB)", 5);
+
+    cout << "\n--------------------------------------------------\n"
+         << endl;
+
+    // ========================================================================
+    // Centralidad de Cercanía para Yeast y IMDB
+
+    cout << "Calculando Centralidad de Cercanía para Yeast..." << endl;
+    auto startYeastCLC = chrono::high_resolution_clock::now();
+    vector<double> clcYeast = calcClosenessCentrality(yeast);
+    auto endYeastCLC = chrono::high_resolution_clock::now();
+    double timeYeastCLC = chrono::duration<double, milli>(endYeastCLC - startYeastCLC).count();
+    cout << "Centralidad de Cercanía Yeast calculada en: " << timeYeastCLC << " ms" << endl;
+    mostrarTopCentralidad(yeast, clcYeast, "Centralidad de Cercania (Yeast)", 5);
+
+    cout << "\n--------------------------------------------------\n"
+         << endl;
+
+    cout << "Calculando Centralidad de Cercanía para IMDB..." << endl;
+    auto startImdbCLC = chrono::high_resolution_clock::now();
+    vector<double> clcImdb = calcClosenessCentrality(imdb);
+    auto endImdbCLC = chrono::high_resolution_clock::now();
+    double timeImdbCLC = chrono::duration<double, milli>(endImdbCLC - startImdbCLC).count();
+    cout << "Centralidad de Cercanía IMDB calculada en: " << timeImdbCLC << " ms" << endl;
+    mostrarTopCentralidad(imdb, clcImdb, "Centralidad de Cercania (IMDB)", 5);
 
     return 0;
 }
