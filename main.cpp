@@ -29,77 +29,14 @@ int main()
     cout << "Tiempo de construccion: " << msImdb << " ms\n"
          << endl;
 
-    // ========================================================================
-
     cout << "=== Resumen ===" << endl;
     cout << "Yeast -> Nodos: " << yeast.numNodos() << " | Aristas: " << yeast.numAristas() << endl;
-    cout << "IMDB  -> Nodos: " << imdb.numNodos() << " | Aristas: " << imdb.numAristas() << "\n"
+    cout << "IMDB   -> Nodos: " << imdb.numNodos() << " | Aristas: " << imdb.numAristas() << "\n"
          << endl;
 
     // ========================================================================
-    // PageRank para Yeast y IMDB
-
-    cout << "Calculando PageRank para Yeast..." << endl;
-    auto startYeast = chrono::high_resolution_clock::now();
-    vector<double> prYeast = calcPageRank(yeast, 0.85, 100, 1e-6);
-    auto endYeast = chrono::high_resolution_clock::now();
-    double timeYeast = chrono::duration<double, milli>(endYeast - startYeast).count();
-    cout << "PageRank Yeast calculado en: " << timeYeast << " ms" << endl;
-
-    // Mostrar el Top 5 de proteinas más importantes
-    mostrarTopCentralidad(yeast, prYeast, "PageRank Ponderado (Yeast)", 5);
-
-    cout << "\n--------------------------------------------------\n"
-         << endl;
-
-    // Ejecutar PageRank para IMDB
-    cout << "Calculando PageRank para IMDB (Red de Actores)..." << endl;
-    auto startImdb = chrono::high_resolution_clock::now();
-    vector<double> prImdb = calcPageRank(imdb, 0.85, 100, 1e-6);
-    auto endImdb = chrono::high_resolution_clock::now();
-    double timeImdb = chrono::duration<double, milli>(endImdb - startImdb).count();
-    cout << "PageRank IMDB calculado en: " << timeImdb << " ms" << endl;
-
-    // Mostrar el Top 5 de actores más importantes
-    mostrarTopCentralidad(imdb, prImdb, "PageRank Ponderado (IMDB)", 5);
-
-    cout << "\n--------------------------------------------------\n"
-         << endl;
-
+    // 1. Degree Centrality
     // ========================================================================
-    // Global Clustering Coefficient para Yeast y IMDB
-
-    cout << "Calculando Coeficiente de Agrupamiento Global para Yeast..." << endl;
-    auto startYeastCC = chrono::high_resolution_clock::now();
-    double ccGlobalYeast = calcGlobalClusteringCoefficient(yeast);
-    auto endYeastCC = chrono::high_resolution_clock::now();
-    double timeYeastCC = chrono::duration<double, milli>(endYeastCC - startYeastCC).count();
-
-    cout << "Clustering Coefficient Yeast calculado en: " << timeYeastCC << " ms" << endl;
-    cout << "Coeficiente Global (Transitividad) de Yeast: " << ccGlobalYeast
-         << " (" << ccGlobalYeast * 100.0 << "%)\n"
-         << endl;
-
-    cout << "--------------------------------------------------\n"
-         << endl;
-
-    cout << "Calculando Coeficiente de Agrupamiento Global para IMDB..." << endl;
-    auto startImdbCC = chrono::high_resolution_clock::now();
-    double ccGlobalImdb = calcGlobalClusteringCoefficient(imdb);
-    auto endImdbCC = chrono::high_resolution_clock::now();
-    double timeImdbCC = chrono::duration<double, milli>(endImdbCC - startImdbCC).count();
-
-    cout << "Clustering Coefficient IMDB calculado en: " << timeImdbCC << " ms" << endl;
-    cout << "Coeficiente Global (Transitividad) de IMDB: " << ccGlobalImdb
-         << " (" << ccGlobalImdb * 100.0 << "%)\n"
-         << endl;
-
-    cout << "\n--------------------------------------------------\n"
-         << endl;
-
-    // ========================================================================
-    // Centralidad de Grado para Yeast y IMDB
-
     cout << "Calculando Centralidad de Grado para Yeast..." << endl;
     auto startYeastDC = chrono::high_resolution_clock::now();
     vector<double> dcYeast = calcDegreeCentrality(yeast);
@@ -123,8 +60,8 @@ int main()
          << endl;
 
     // ========================================================================
-    // Centralidad de Intermediación para Yeast y IMDB
-
+    // 2. Betweenness Centrality
+    // ========================================================================
     cout << "Calculando Centralidad de Intermediación para Yeast..." << endl;
     auto startYeastBC = chrono::high_resolution_clock::now();
     vector<double> bcYeast = calcBetweennessCentrality(yeast);
@@ -148,8 +85,8 @@ int main()
          << endl;
 
     // ========================================================================
-    // Centralidad de Cercanía para Yeast y IMDB
-
+    // 3. Closeness Centrality
+    // ========================================================================
     cout << "Calculando Centralidad de Cercanía para Yeast..." << endl;
     auto startYeastCLC = chrono::high_resolution_clock::now();
     vector<double> clcYeast = calcClosenessCentrality(yeast);
@@ -168,6 +105,89 @@ int main()
     double timeImdbCLC = chrono::duration<double, milli>(endImdbCLC - startImdbCLC).count();
     cout << "Centralidad de Cercanía IMDB calculada en: " << timeImdbCLC << " ms" << endl;
     mostrarTopCentralidad(imdb, clcImdb, "Centralidad de Cercania (IMDB)", 5);
+
+    cout << "\n--------------------------------------------------\n"
+         << endl;
+
+    // ========================================================================
+    // 4. PageRank
+    // ========================================================================
+    cout << "Calculando PageRank para Yeast..." << endl;
+    auto startYeastPR = chrono::high_resolution_clock::now();
+    vector<double> prYeast = calcPageRank(yeast, 0.85, 100, 1e-6);
+    auto endYeastPR = chrono::high_resolution_clock::now();
+    double timeYeastPR = chrono::duration<double, milli>(endYeastPR - startYeastPR).count();
+    cout << "PageRank Yeast calculado en: " << timeYeastPR << " ms" << endl;
+    mostrarTopCentralidad(yeast, prYeast, "PageRank Ponderado (Yeast)", 5);
+
+    cout << "\n--------------------------------------------------\n"
+         << endl;
+
+    cout << "Calculando PageRank para IMDB (Red de Actores)..." << endl;
+    auto startImdbPR = chrono::high_resolution_clock::now();
+    vector<double> prImdb = calcPageRank(imdb, 0.85, 100, 1e-6);
+    auto endImdbPR = chrono::high_resolution_clock::now();
+    double timeImdbPR = chrono::duration<double, milli>(endImdbPR - startImdbPR).count();
+    cout << "PageRank IMDB calculado en: " << timeImdbPR << " ms" << endl;
+    mostrarTopCentralidad(imdb, prImdb, "PageRank Ponderado (IMDB)", 5);
+
+    cout << "\n--------------------------------------------------\n"
+         << endl;
+
+    // ========================================================================
+    // 5. Average Shortest Path Length (ASPL)
+    // ========================================================================
+    cout << "Calculando Longitud Promedio del Camino Mas Corto para Yeast..." << endl;
+    auto startYeastASPL = chrono::high_resolution_clock::now();
+    double asplYeast = calcAverageShortestPath(yeast);
+    auto endYeastASPL = chrono::high_resolution_clock::now();
+    double timeYeastASPL = chrono::duration<double, milli>(endYeastASPL - startYeastASPL).count();
+    cout << "ASPL Yeast calculado en: " << timeYeastASPL << " ms" << endl;
+    cout << "Distancia promedio entre proteinas en Yeast: " << asplYeast << " saltos\n"
+         << endl;
+
+    cout << "--------------------------------------------------\n"
+         << endl;
+
+    cout << "Calculando Longitud Promedio del Camino Mas Corto para IMDB..." << endl;
+    auto startImdbASPL = chrono::high_resolution_clock::now();
+    double asplImdb = calcAverageShortestPath(imdb);
+    auto endImdbASPL = chrono::high_resolution_clock::now();
+    double timeImdbASPL = chrono::duration<double, milli>(endImdbASPL - startImdbASPL).count();
+    cout << "ASPL IMDB calculado en: " << timeImdbASPL << " ms" << endl;
+    cout << "Distancia promedio entre actores en IMDB: " << asplImdb << " saltos\n"
+         << endl;
+
+    cout << "--------------------------------------------------\n"
+         << endl;
+
+    // ========================================================================
+    // 6. Global Clustering Coefficient (Transitividad)
+    // Evalúa la probabilidad global de que si A se conecta con B y B con C,
+    // entonces A se conecte con C, indicando la densidad de comunidades cerradas.
+    // ========================================================================
+    cout << "Calculando Coeficiente de Agrupamiento Global para Yeast..." << endl;
+    auto startYeastCC = chrono::high_resolution_clock::now();
+    double ccGlobalYeast = calcGlobalClusteringCoefficient(yeast);
+    auto endYeastCC = chrono::high_resolution_clock::now();
+    double timeYeastCC = chrono::duration<double, milli>(endYeastCC - startYeastCC).count();
+    cout << "Clustering Coefficient Yeast calculado en: " << timeYeastCC << " ms" << endl;
+    cout << "Coeficiente Global (Transitividad) de Yeast: " << ccGlobalYeast
+         << " (" << ccGlobalYeast * 100.0 << "%)\n"
+         << endl;
+
+    cout << "--------------------------------------------------\n"
+         << endl;
+
+    cout << "Calculando Coeficiente de Agrupamiento Global para IMDB..." << endl;
+    auto startImdbCC = chrono::high_resolution_clock::now();
+    double ccGlobalImdb = calcGlobalClusteringCoefficient(imdb);
+    auto endImdbCC = chrono::high_resolution_clock::now();
+    double timeImdbCC = chrono::duration<double, milli>(endImdbCC - startImdbCC).count();
+    cout << "Clustering Coefficient IMDB calculado en: " << timeImdbCC << " ms" << endl;
+    cout << "Coeficiente Global (Transitividad) de IMDB: " << ccGlobalImdb
+         << " (" << ccGlobalImdb * 100.0 << "%)\n"
+         << endl;
 
     return 0;
 }

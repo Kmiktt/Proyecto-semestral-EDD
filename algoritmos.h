@@ -32,8 +32,9 @@ vector<double> calcBetweennessCentrality(const Grafo& g);
 
 /**
  * 3. Centralidad de Cercanía (Closeness Centrality)
- * Retorna ...
- */
+ * Retorna un vector con la centralidad de cercanía normalizada para cada nodo.
+ * Este valor indica qué tan cerca está un nodo de todos los demás nodos en el grafo.
+ *  */
 vector<double> calcClosenessCentrality(const Grafo& g);
 
 /**
