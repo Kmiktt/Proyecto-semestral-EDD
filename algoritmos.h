@@ -19,26 +19,26 @@ struct NodoRanking {
 // Métricas que actúan por nodos.
 
 /**
- * 1. Centralidad de Grado (Degree Centrality)
+ * Centralidad de Grado (Degree Centrality)
  * Retorna un vector con la centralidad de grado normalizada para cada nodo.
  */
 vector<double> calcDegreeCentrality(const Grafo& g);
 
 /**
- * 2. Centralidad de Intermediación (Betweenness Centrality)
+ * Centralidad de Intermediación (Betweenness Centrality)
  * Retorna un vector con la centralidad de intermediación normalizada para cada nodo.
  */
 vector<double> calcBetweennessCentrality(const Grafo& g);
 
 /**
- * 3. Centralidad de Cercanía (Closeness Centrality)
+ * Centralidad de Cercanía (Closeness Centrality)
  * Retorna un vector con la centralidad de cercanía normalizada para cada nodo.
  * Este valor indica qué tan cerca está un nodo de todos los demás nodos en el grafo.
  *  */
 vector<double> calcClosenessCentrality(const Grafo& g);
 
 /**
- * @brief 4. PageRank
+ * @brief PageRank
  *
  * Calcula la importancia de los nodos mediante recorridos aleatorios iterativos 
  * utilizando el método de Modelo de Navegación aleatorio.
@@ -55,8 +55,12 @@ vector<double> calcClosenessCentrality(const Grafo& g);
 vector<double> calcPageRank(const Grafo& g, double dampingFactor = 0.85, int maxIteraciones = 100, double tolerancia = 1e-6);
 
 /**
- * 6. Centralidad de Subgrafo (Subgraph Centrality)
- * Retorna ...
+ * Centralidad de Subgrafo (Subgraph Centrality)
+ * Retorna la importancia de un nodo según cuántas veces es parte de un ciclo cerrado,
+ * la implementación se basa en aproximación mediante la serie de Taylor de la función exponencial, truncada en k=10.
+ * 
+ * Esto debido a que la implementación exacta requiere calcular la exponencial de la matriz de adyacencia,
+ * lo que tiene una complejidad temporal de O(n^3) y espacial de O(n^2), lo que es inviable para grafos grandes.
  */
 vector<double> calcSubgraphCentrality(const Grafo& g);
 
@@ -65,13 +69,13 @@ vector<double> calcSubgraphCentrality(const Grafo& g);
 // Métricas que actúan sobre el grafo completo.
 
 /**
- * 5. Longitud Promedio del Camino Más Corto (Average Shortest Path Length)
+ * Longitud Promedio del Camino Más Corto (Average Shortest Path Length)
  * Devuelve la distancia promedio entre todos los pares de nodos conectados en el grafo.
  */
 double calcAverageShortestPath(const Grafo& g);
 
 /**
- * @brief 7. Coeficiente de agrupamiento global (Global Clustering Coefficient).
+ * @brief Coeficiente de agrupamiento global (Global Clustering Coefficient).
  * 
  * Retorna un valor entre 0 y 1 que indica la tendencia de los nodos a formar clústeres o grupos densamente conectados.
  */
