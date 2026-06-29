@@ -93,4 +93,6 @@ double calcGlobalClusteringCoefficient(const Grafo& g);
  */
 void mostrarTopCentralidad(const Grafo& g, const vector<double>& valores, const string& nombreMetrica, int topN = 10);
 
+void eliminarTopMetrica(Grafo& g, const vector<double>& valores, int topN = 10);
+
 #endif // ALGORITMOS_H
