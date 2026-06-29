@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include "algoritmos.h"
+#include <random>
 
 void mostrarTopCentralidad(const Grafo &g, const vector<double> &valores, const string &nombreMetrica, int topN)
 {
@@ -56,17 +57,62 @@ void eliminarTopMetrica(Grafo &g, const vector<double> &valores, int topN)
         auto vecinos = g.vecinosDe(nodoId); //
         int gradoAbsoluto = vecinos.size();
 
-   
-
         for (const auto &arista : vecinos)
         {
             int vecinoId = arista.first;
             string nombreVecino = g.nombreNodo(vecinoId); //
-
 
             g.eliminarArista(nombreNodoOriginal, nombreVecino); //
         }
     }
 
     cout << "Se han eliminado los " << limite << " nodos con mayor valor de la métrica." << endl;
+}
+
+void agregarNodosAlAzar(Grafo &g, int cantidad, int k)
+{
+    int nOriginal = g.numNodos();
+    if (nOriginal == 0 || cantidad <= 0 || k < 1)
+        return;
+
+    // para evitar bucles infinitos con k muy alto
+    if (k > nOriginal)
+    {
+        k = nOriginal;
+    }
+
+    // config de random
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dis(0, nOriginal - 1); // solo entre los q ya existen
+
+
+    int primerNodoNuevoId = nOriginal;
+
+    for (int i = 0; i < cantidad; ++i)
+    {
+        string nombreNodo = "Nodo_" + to_string(g.numNodos());
+        g.agregarNodo(nombreNodo);
+    }
+
+
+    int totalNodos = g.numNodos();
+    for (int i = primerNodoNuevoId; i < totalNodos; ++i)
+    {
+        std::unordered_set<int> vecinosConectados;
+        string nombreNodoNuevo = g.nombreNodo(i);
+
+        while (vecinosConectados.size() < (size_t)k)
+        {
+            // elegimos vecino al azar entre los nodos originales
+            int vecinoOriginalId = dis(gen);
+
+            // evitar duplicados y auto-conexiones
+            if (vecinosConectados.find(vecinoOriginalId) == vecinosConectados.end())
+            {
+                g.agregarArista(nombreNodoNuevo, g.nombreNodo(vecinoOriginalId));
+                vecinosConectados.insert(vecinoOriginalId);
+            }
+        }
+    }
 }

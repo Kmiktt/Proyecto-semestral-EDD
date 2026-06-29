@@ -95,4 +95,6 @@ void mostrarTopCentralidad(const Grafo& g, const vector<double>& valores, const 
 
 void eliminarTopMetrica(Grafo& g, const vector<double>& valores, int topN = 10);
 
+void agregarNodosAlAzar(Grafo& g, int cantidad, int k = 2);
+
 #endif // ALGORITMOS_H

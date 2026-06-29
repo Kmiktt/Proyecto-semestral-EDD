@@ -23,12 +23,9 @@ void ejecutarBloqueExperimentos(const string& nombreDataset, const Grafo& grafoO
     // Clonar el grafo original
     Grafo grafoMutado = grafoOriginal;
 
-    // métrica base 
-    vector<double> dcOriginal = calcBetweennessCentrality(grafoOriginal);
 
-
-    cout << "Aplicando eliminaciones..." << endl;
-    eliminarTopMetrica(grafoMutado, dcOriginal, 1000);
+    cout << "añadiendo 200 nodos al azar conectados a 100..." << endl;
+    agregarNodosAlAzar(grafoMutado, 200, 100); //
 
 
     cout << "Evaluando estado..." << endl;
