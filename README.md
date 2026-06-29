@@ -3,7 +3,7 @@
 
 ## Integrantes
 
-* Camila García Torres - agregar matrícula D:
+* Camila García Torres - 2024042033
 * Javiera Paris Osses - 2023453170
 * Diego Matus Salas - 2023900249
 
@@ -33,9 +33,25 @@ El proyecto analiza la topología de los grafos mediante 7 métricas clave:
 
 ---
 
-Debido al gran tamaño de los datasets, **estos no se suben al repositorio**. Se tienen que agregar a la carpeta `/data`.
+Debido al tamaño de los datasets, **estos no se suben al repositorio**. Se tienen que agregar a la carpeta `/data`.
 
 Para compilar, se debe ejecutar
 ```bash
 g++ -O3 main.cpp grafos.cpp algoritmosUtil.cpp calc*.cpp -o main
+
+./main
 ```
+
+También cuenta con una implementación interactiva para obtener las mediciones en consola, eso es ejecutando
+```bash
+g++ -O3 main_interactivo.cpp grafos.cpp algoritmosUtil.cpp calc*.cpp -o main_interactivo
+
+./main_interactivo
+```
+Por otro lado, si se quiere ejecutar un benchmark para ver el tiempo promedio de las mediciones, se puede realizar mediante
+```bash
+$ g++ -O3 benchmark.cpp grafos.cpp algoritmosUtil.cpp calc*.cpp -o benchmark
+
+./benchmark
+```
+Cabe destacar que este benchmark realiza las mediciones 15 veces, por lo que demora bastante, y guarda lo obtenido en un archivo `benchmark_log.txt`
